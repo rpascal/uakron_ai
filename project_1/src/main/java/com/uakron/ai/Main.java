@@ -1,14 +1,16 @@
 package com.uakron.ai;
 
-import weka.core.converters.ConverterUtils.DataSource;
 import weka.core.*;
+import weka.core.converters.ConverterUtils.DataSource;
+
 import weka.classifiers.Evaluation;
 import weka.classifiers.trees.J48;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.io.*;
-import java.util.*;
+import java.io.Console;
+import java.io.File;
+import java.util.Random;
 
 
 public class Main {
@@ -17,28 +19,33 @@ public class Main {
     private J48 j48Model;
     private Instances dataSet;
 
-
     public static void main(String[] args) {
         new Main();
     }
 
     public Main() {
         console = System.console();
-
-        gettingDataActions();
+        j48Model = new J48();
         dataLoadedActions();
     }
 
-    public void gettingDataActions() {
+    public void dataLoadedActions() {
         while (true) {
-            printGroup(" 1. Learn decision tree and learn ( .arff or .csv file )", " 2. Load an existing model file (tree)", " 3. Exit");
-            String selected = console.readLine("Please Select Option: ");
 
-            j48Model = new J48();
+            boolean dataLoaded = dataSet != null;
+            String disabledString = (dataLoaded ? "" : " ( Disabled until data is loaded )");
+            printGroup(
+                    "Selcet a option",
+                    " 1. Learn decision tree and save ( .arff or .csv file )",
+                    " 2. Load an existing model file",
+                    " 3. Save loaded tree as .model file" + disabledString,
+                    " 4. Apply the decision tree to new cases" + disabledString,
+                    " 5. Exit");
+
+            String selected = readFromConsole("Select Option: ");
 
             try {
                 switch (Integer.parseInt(selected)) {
-                    // Handle loading the arff file
                     case 1: {
 
                         File file = selectFile(new FileNameExtensionFilter(
@@ -56,13 +63,12 @@ public class Main {
                         dataSet.setClassIndex(dataSet.numAttributes() - 1);
                         j48Model.buildClassifier(dataSet);
 
+                        saveDataset();
 
-                        saveTree();
-
+                        printGroup("Data Loaded and Saved");
                         break;
                     }
                     case 2: {
-
                         File file = selectFile(null);
                         if (file == null) {
                             printGroup("Please select a valid file.");
@@ -71,136 +77,71 @@ public class Main {
 
                         String filename = file.getAbsolutePath();
 
-                        j48Model = (J48) SerializationHelper.read(filename);
+                        dataSet = (Instances) SerializationHelper.read(filename);
+                        dataSet.setClassIndex(dataSet.numAttributes() - 1);
+                        j48Model.buildClassifier(dataSet);
+
+                        printGroup("Data Loaded");
                         break;
                     }
                     case 3: {
+                        if(!dataLoaded){
+                            break;
+                        }
+                        saveDataset();
+                        break;
+                    }
+                    case 4: {
+                        if(!dataLoaded){
+                            break;
+                        }
+                        Instances newCases = getNewAttributes();
+
+                        try {
+                            Evaluation eval = new Evaluation(newCases);
+
+                            if (newCases.numInstances() >= 10 && readFromConsole("Cross Validate? [y/n]: ").toLowerCase().equals("y")) {
+                                eval.crossValidateModel(j48Model, newCases, 10, new Random(1));
+                            } else {
+                                eval.evaluateModel(j48Model, newCases);
+                            }
+
+                            printGroup(eval.toSummaryString("Results:\n", true));
+                            printGroup(eval.toMatrixString());
+                        } catch (Exception e) {
+                            printGroup(e.toString(), "Unable to apply the decision tree to entered cases");
+                        }
+                        break;
+                    }
+                    case 5: {
                         exit();
                     }
                     default: {
-                        printGroup("Please enter 1, 2, or 3...");
+                        printGroup("Please enter 1, 2, 3, or 4...");
                         continue;
                     }
                 }
-                printGroup(j48Model.toString());
-
-                return;
             } catch (Exception e) {
-                printGroup(e.toString());
-                printGroup("Error loading data");
+                printGroup(e.toString(), "Error loading data");
             }
         }
     }
 
-
-    public void dataLoadedActions() {
-        while (true) {
-            printGroup(
-                    "Selcet a option",
-                    " 1. Select a new data file to learn from or load a existing tree",
-                    " 2. Save loaded tree as .model file",
-                    " 3. Apply the decision tree to new cases",
-                    " 4. Exit");
-
-
-            String selected = console.readLine("Select Option: ");
-
-            switch (Integer.parseInt(selected)) {
-                case 1: {
-                    gettingDataActions();
-                    break;
-                }
-                case 2: {
-                    saveTree();
-                    break;
-                }
-                // Apply the decision tree against read in cases
-                case 3: {
-                    if (dataSet == null) {
-                        printGroup("Training data must be loaded from a .arff file to determine attributes");
-
-                    }
-
-                    // Clone the set of instances
-                    Instances newCases = new Instances(dataSet);
-                    newCases.delete();
-
-                    while (true) {
-                        Instance newInsatnce = new DenseInstance(newCases.numAttributes());
-
-                        printGroup("Enter values for the attributes...");
-
-                        for (int i = 0; i < newCases.numAttributes(); ++i) {
-                            Attribute attribute = newCases.attribute(i);
-                            String value = console.readLine(attribute.name() + ": ");
-
-                            newInsatnce.setValue(attribute, value);
-                        }
-
-                        newCases.add(newInsatnce);
-
-
-                        if (!console.readLine("Add another case? [y/n] ").toLowerCase().equals("y"))
-                            break;
-                    }
-
-                    try {
-                        // Do evaluate model against the learnt model
-                        Evaluation eval = new Evaluation(newCases);
-
-                        if (newCases.numInstances() >= 10 && console.readLine("Cross Validate? [y/n]: ").toLowerCase().equals("y")) {
-                            eval.crossValidateModel(j48Model, newCases, 10, new Random(1));
-                        } else {
-                            eval.evaluateModel(j48Model, newCases);
-                        }
-
-                        // Print confusion matrix
-                        printGroup(eval.toSummaryString("\nResults\n======\n", false));
-                        printGroup(eval.toMatrixString());
-                    } catch (Exception e) {
-
-                        printGroup(e.toString());
-                        printGroup("Unable to cross validate and create confusion matrix against entered cases");
-
-                    }
-
-                    break;
-                }
-                case 4: {
-                    exit();
-                }
-                default: {
-                    printGroup("Please enter 1, 2, 3, or 4...");
-                    continue;
-                }
-            }
-        }
-    }
-
-    private void exit() {
-        System.exit(0);
-    }
-
-    private void saveTree() {
+    private void saveDataset() {
         try {
-            String savePath = console.readLine("Filename to save (.model will be appended): ");
-
+            String savePath = readFromConsole("Filename to save (.model will be appended): ");
             String directoryName = "savedModels/";
 
             File directory = new File(directoryName);
-            if (! directory.exists()){
+            if (!directory.exists()) {
                 directory.mkdir();
             }
 
-            SerializationHelper.write(directoryName + savePath + ".model", j48Model);
+            SerializationHelper.write(directoryName + savePath + ".model", dataSet);
 
             printGroup("Model saved as " + savePath + ".model");
-
         } catch (Exception e) {
-
-            printGroup(e.toString());
-            printGroup("Unable to save tree model");
-
+            printGroup(e.toString(), "Unable to save tree model");
         }
     }
 
@@ -217,10 +158,10 @@ public class Main {
         if (filter != null) {
             chooser.setFileFilter(filter);
         }
-        try{
+        try {
             File workingDirectory = new File(System.getProperty("user.dir"));
             chooser.setCurrentDirectory(workingDirectory);
-        }catch(Exception e){
+        } catch (Exception e) {
             printGroup("Could not find working directory.");
         }
         int returnVal = chooser.showOpenDialog(null);
@@ -230,5 +171,44 @@ public class Main {
         return null;
     }
 
+    private Instances getNewAttributes() {
+        Instances newCases = new Instances(dataSet);
+        newCases.delete();
+
+        while (true) {
+            Instance newInstance = new DenseInstance(newCases.numAttributes());
+            printGroup("Enter values for the attributes...");
+
+            for (int i = 0; i < newCases.numAttributes(); ++i) {
+                Attribute attribute = newCases.attribute(i);
+                boolean set = false;
+                while (!set) {
+                    try {
+                        String value = readFromConsole(attribute.name() + ": ");
+                        newInstance.setValue(attribute, value);
+                        set = true;
+                    } catch (IllegalArgumentException e) {
+                        printGroup(e.toString(), "Error, Try entering a different value");
+                    }
+                }
+            }
+
+            newCases.add(newInstance);
+
+            if (readFromConsole("Add another case? [y/n] ").toLowerCase().equals("n")) {
+                break;
+            }
+        }
+
+        return newCases;
+    }
+
+    private String readFromConsole(String s) {
+        return console.readLine(s);
+    }
+
+    private void exit() {
+        System.exit(0);
+    }
 
 }
