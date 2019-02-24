@@ -6,7 +6,7 @@ import weka.core.converters.ConverterUtils.DataSource;
 import weka.classifiers.Evaluation;
 import weka.classifiers.trees.J48;
 
-import javax.swing.*;
+import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.Console;
 import java.io.File;
@@ -26,14 +26,15 @@ public class Main {
     public Main() {
         console = System.console();
         j48Model = new J48();
-        dataLoadedActions();
+        loop();
     }
 
-    public void dataLoadedActions() {
+    public void loop() {
         while (true) {
 
             boolean dataLoaded = dataSet != null;
             String disabledString = (dataLoaded ? "" : " ( Disabled until data is loaded )");
+
             printGroup(
                     "Selcet a option",
                     " 1. Learn decision tree and save ( .arff or .csv file )",
@@ -100,7 +101,7 @@ public class Main {
                         try {
                             Evaluation eval = new Evaluation(newCases);
 
-                            if (newCases.numInstances() >= 10 && readFromConsole("Cross Validate? [y/n]: ").toLowerCase().equals("y")) {
+                            if (newCases.numInstances() >= 10 && readFromConsole("Cross Validate? (y/n): ").toLowerCase().equals("y")) {
                                 eval.crossValidateModel(j48Model, newCases, 10, new Random(1));
                             } else {
                                 eval.evaluateModel(j48Model, newCases);
