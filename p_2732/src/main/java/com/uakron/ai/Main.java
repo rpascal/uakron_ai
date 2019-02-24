@@ -36,14 +36,14 @@ public class Main {
             String disabledString = (dataLoaded ? "" : " ( Disabled until data is loaded )");
 
             printGroup(
-                    "Selcet a option",
+                    "Select an option",
                     " 1. Learn decision tree and save ( .arff or .csv file )",
                     " 2. Load an existing model file",
                     " 3. Save loaded tree as .model file" + disabledString,
                     " 4. Apply the decision tree to new cases" + disabledString,
                     " 5. Exit");
 
-            String selected = readFromConsole("Select Option: ");
+            String selected = readFromConsole("Select an Option: ");
 
             try {
                 switch (Integer.parseInt(selected)) {
