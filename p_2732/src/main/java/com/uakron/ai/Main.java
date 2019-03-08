@@ -10,8 +10,17 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.Console;
 import java.io.File;
-import java.util.Random;
+import java.util.*;
+import java.util.stream.Collectors;
 
+
+class ListOptions {
+    public String node;
+    public String nextNode;
+    public String result;
+    public List<ListOptions> options;
+    public String finalValue;
+}
 
 public class Main {
 
@@ -60,9 +69,30 @@ public class Main {
 
                         DataSource source = new DataSource(filename);
                         dataSet = source.getDataSet();
-
                         dataSet.setClassIndex(dataSet.numAttributes() - 1);
                         j48Model.buildClassifier(dataSet);
+
+
+                        optionThree();
+
+//                        Enumeration<Option> o = j48Model.listOptions();
+//                        while(o.hasMoreElements())
+//                        {
+//                            Option oo = o.nextElement();
+//                            printGroup(oo.description());
+//                        }
+
+                        printGroup(j48Model.toString());
+
+
+//                        Enumeration<Attribute> instanceEnumeration = dataSet.enumerateAttributes();
+//
+//
+//                        while (instanceEnumeration.hasMoreElements()) {
+//                            Attribute param = instanceEnumeration.nextElement();
+//                            System.out.println(param.toString());
+//                        }
+
 
                         saveDataset();
 
@@ -86,16 +116,18 @@ public class Main {
                         break;
                     }
                     case 3: {
-                        if(!dataLoaded){
+                        if (!dataLoaded) {
                             break;
                         }
                         saveDataset();
                         break;
                     }
                     case 4: {
-                        if(!dataLoaded){
+                        if (!dataLoaded) {
                             break;
                         }
+
+
                         Instances newCases = getNewAttributes();
 
                         try {
@@ -127,6 +159,63 @@ public class Main {
             }
         }
     }
+
+
+    private void optionThree() throws Exception {
+        List<String> tree = new ArrayList<String>(Arrays.asList(j48Model.graph().split("\n")));
+        tree.remove(0);
+        tree.remove(tree.size() - 1);
+        List<ListOptions> options = new ArrayList<>();
+
+        String firstNode = tree.get(0).substring(0, 2);
+
+        tree.remove(0);
+
+        List<ListOptions> res = getNodes(firstNode, tree);
+
+//        for (String s : tree) {
+//            s = s.trim();
+//            String node = s.substring(0, 2);
+//            printGroup(node);
+//        }
+    }
+
+    private List<ListOptions> getNodes(String node, List<String> lines){
+        List<String> newLines = lines.stream().filter((item) ->{
+            return item.contains(node);
+        }).collect(Collectors.toList());
+
+        List<ListOptions> options = new ArrayList<>();
+
+        newLines.forEach(item ->{
+
+
+        });
+
+
+        return options;
+    }
+
+
+//    private Instance prepareTestInstance() {
+//
+//        Instances newCases = new Instances(dataSet);
+//
+//        Enumeration<Instance> instanceEnumeration = dataSet.enumerateInstances();
+//
+//        while (instanceEnumeration.hasMoreElements()) {
+//            Instance param = instanceEnumeration.nextElement();
+//            System.out.println(param.toString());
+//        }
+//
+//        instance.setDataset(trainingData);
+//
+//        instance.setValue(trainingData.attribute(0), "Europe");
+//        instance.setValue(trainingData.attribute(1), "no");
+//        instance.setValue(trainingData.attribute(2), "romance");
+//
+//        return instance;
+//    }
 
     private void saveDataset() {
         try {
@@ -173,6 +262,9 @@ public class Main {
     }
 
     private Instances getNewAttributes() {
+
+//        dataSet.
+
         Instances newCases = new Instances(dataSet);
         newCases.delete();
 
