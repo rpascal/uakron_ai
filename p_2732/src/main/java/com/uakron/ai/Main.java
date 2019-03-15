@@ -71,30 +71,6 @@ public class Main {
                         dataSet.setClassIndex(dataSet.numAttributes() - 1);
                         j48Model.buildClassifier(dataSet);
 
-
-//                        printGroup(j48Model.toString());
-
-                        optionThree();
-
-//                        Enumeration<Option> o = j48Model.Model();
-//                        while(o.hasMoreElements())
-//                        {
-//                            Option oo = o.nextElement();
-//                            printGroup(oo.description());
-//                        }
-
-                        printGroup(j48Model.toString());
-
-
-//                        Enumeration<Attribute> instanceEnumeration = dataSet.enumerateAttributes();
-//
-//
-//                        while (instanceEnumeration.hasMoreElements()) {
-//                            Attribute param = instanceEnumeration.nextElement();
-//                            System.out.println(param.toString());
-//                        }
-
-
                         saveDataset();
 
                         printGroup("Data Loaded and Saved");
@@ -127,50 +103,8 @@ public class Main {
                         if (!dataLoaded) {
                             break;
                         }
+                        traverseDecisionTree(j48Model.graph().split("\n"));
 
-
-//                        String currentNode = tree.get(0).substring(0, 2);
-//
-//                        boolean hasChildren = true;
-//                        while(hasChildren){
-//                            String value = readFromConsole(currentNode);
-//
-//                            Optional<String> newLine = tree.stream().filter((item) ->{
-//                                return item.contains(currentNode) && item.contains(value);
-//                            }).findFirst();//.collect(Collectors.toList());
-//
-//                            if(newLine.isPresent()){
-//                                printGroup("Try entering new value that didnt work...");
-//                                continue;
-//                            }
-//
-//
-//                            String newNode = newLine.get().substring(4, 2);
-//
-//
-//
-//
-//
-//
-//                        }
-
-
-//                        Instances newCases = getNewAttributes();
-//
-//                        try {
-//                            Evaluation eval = new Evaluation(newCases);
-//
-//                            if (newCases.numInstances() >= 10 && readFromConsole("Cross Validate? (y/n): ").toLowerCase().equals("y")) {
-//                                eval.crossValidateModel(j48Model, newCases, 10, new Random(1));
-//                            } else {
-//                                eval.evaluateModel(j48Model, newCases);
-//                            }
-//
-//                            printGroup(eval.toSummaryString("Results:\n", true));
-//                            printGroup(eval.toMatrixString());
-//                        } catch (Exception e) {
-//                            printGroup(e.toString(), "Unable to apply the decision tree to entered cases");
-//                        }
                         break;
                     }
                     case 5: {
@@ -187,93 +121,25 @@ public class Main {
         }
     }
 
-
-    private void optionThree() throws Exception {
-
-
-        List<Model> tre = new ArrayList<Model>();
-
-        List<String> tree = new ArrayList<String>(Arrays.asList(j48Model.graph().split("\n")));
-        tree.remove(0);
-        tree.remove(tree.size() - 1);
-        String root = tree.get(0).substring(0, 2);
-
-        printGroup("Root:", root);
-
-
-        tree.remove(0);
-
-
-        tree.forEach(item -> {
-            printGroup(item);
-
-            String parent = item.substring(0, 2);
-            String next = item.substring(4, 6);
-
-            String[] chars = next.split("");
-
-            if(chars[0] == "N" && chars[1].matches("-?(0|[1-9]\\d*)")){
-                printGroup("Terminating node", next, parent);
+    private void traverseDecisionTree(String nodes[]) {
+        for (int j = 1; j < nodes.length - 1; j++) {
+            if (nodes[j].indexOf("shape=box") != -1) {
+                printGroup("The decision Attribute is : " + nodes[j].substring(nodes[j].indexOf("=") + 2, nodes[j].indexOf(" (")));
+                break;
             }
-
-
-            printGroup("--------------");
-        });
-
-//        List<String> tree = new ArrayList<String>(Arrays.asList(j48Model.graph().split("\n")));
-//        tree.remove(0);
-//        tree.remove(tree.size() - 1);
-//        List<Model> options = new ArrayList<>();
-//
-//        String firstNode = tree.get(0).substring(0, 2);
-//
-//        tree.remove(0);
-//
-//        List<Model> res = getNodes(firstNode, tree);
-//
-////        for (String s : tree) {
-////            s = s.trim();
-////            String node = s.substring(0, 2);
-////            printGroup(node);
-////        }
+            String mes = "Enter the value for " + nodes[j].substring(nodes[j].indexOf("=") + 2, nodes[j].indexOf("]") - 2) + ": ";
+            String condition_value = readFromConsole(mes);
+            j++;
+            while ((nodes[j].indexOf("= " + condition_value) == -1) && j < nodes.length - 1) {
+                j++;
+            }
+            String childNodeValue = nodes[j].substring(0, nodes[j].indexOf(" "));
+            childNodeValue = childNodeValue.substring(childNodeValue.indexOf("->") + 2);
+            while ((!childNodeValue.equals(nodes[j + 1].substring(0, nodes[j + 1].indexOf(" ")))) && j + 1 < nodes.length - 1) {
+                j++;
+            }
+        }
     }
-
-    private List<Model> getNodes(String node, List<String> lines) {
-        List<String> newLines = lines.stream().filter((item) -> {
-            return item.contains(node);
-        }).collect(Collectors.toList());
-
-        List<Model> options = new ArrayList<>();
-
-        newLines.forEach(item -> {
-
-
-        });
-
-
-        return options;
-    }
-
-
-//    private Instance prepareTestInstance() {
-//
-//        Instances newCases = new Instances(dataSet);
-//
-//        Enumeration<Instance> instanceEnumeration = dataSet.enumerateInstances();
-//
-//        while (instanceEnumeration.hasMoreElements()) {
-//            Instance param = instanceEnumeration.nextElement();
-//            System.out.println(param.toString());
-//        }
-//
-//        instance.setDataset(trainingData);
-//
-//        instance.setValue(trainingData.attribute(0), "Europe");
-//        instance.setValue(trainingData.attribute(1), "no");
-//        instance.setValue(trainingData.attribute(2), "romance");
-//
-//        return instance;
-//    }
 
     private void saveDataset() {
         try {
@@ -319,40 +185,6 @@ public class Main {
         return null;
     }
 
-    private Instances getNewAttributes() {
-
-//        dataSet.
-
-        Instances newCases = new Instances(dataSet);
-        newCases.delete();
-
-        while (true) {
-            Instance newInstance = new DenseInstance(newCases.numAttributes());
-            printGroup("Enter values for the attributes...");
-
-            for (int i = 0; i < newCases.numAttributes(); ++i) {
-                Attribute attribute = newCases.attribute(i);
-                boolean set = false;
-                while (!set) {
-                    try {
-                        String value = readFromConsole(attribute.name() + ": ");
-                        newInstance.setValue(attribute, value);
-                        set = true;
-                    } catch (IllegalArgumentException e) {
-                        printGroup(e.toString(), "Error, Try entering a different value");
-                    }
-                }
-            }
-
-            newCases.add(newInstance);
-
-            if (readFromConsole("Add another case? [y/n] ").toLowerCase().equals("n")) {
-                break;
-            }
-        }
-
-        return newCases;
-    }
 
     private String readFromConsole(String s) {
         return console.readLine(s);

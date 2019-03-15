@@ -4,61 +4,6 @@
     <list default="true" id="e7c6fde8-0cfd-4a6b-b236-96a4ab112263" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/uakron/ai/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uakron/ai/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/input/ReutersCorn-test.arff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/input/ReutersCorn-train.arff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/input/ReutersGrain-test.arff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/input/ReutersGrain-train.arff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/input/airline.arff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/input/breast-cancer.arff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/input/contact-lenses.arff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/input/cpu.arff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/input/cpu.with.vendor.arff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/input/credit-g.arff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/input/csv_result-cpu.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/input/diabetes.arff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/input/films.arff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/input/glass.arff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/input/hypothyroid.arff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/input/ionosphere.arff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/input/iris.2D.arff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/input/iris.arff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/input/labor.arff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/input/segment-challenge.arff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/input/segment-test.arff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/input/soybean.arff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/input/supermarket.arff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/input/test.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/input/unbalanced.arff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/input/vote.arff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/input/weather.arff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/input/weather.nominal.arff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/input/weather.numeric.arff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/p_2732.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/run.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/savedModels/aaaaa.model" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/savedModels/asd.model" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/savedModels/asdas.model" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/savedModels/balhs.model" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/savedModels/qqqqqqq.model" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/savedModels/sdf.model" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/savedModels/sdfsa.model" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/savedModels/test.model" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/savedModels/weather.model" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/savedModels/zzzz.model" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/src/main/java/com/uakron/ai/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/target/classes/com/uakron/ai/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/target/project_1-1.0-jar-with-dependencies.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project_1/target/project_1-1.0.jar" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -73,17 +18,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/uakron/ai/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="355">
-              <caret line="203" column="23" selection-start-line="203" selection-start-column="23" selection-end-line="203" selection-end-column="23" />
+            <state relative-caret-position="431">
+              <caret line="73" selection-start-line="73" selection-end-line="73" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#642#643#0" expanded="true" />
                 <element signature="e#668#669#0" expanded="true" />
-                <element signature="e#6475#6482#0" expanded="true" />
-                <element signature="e#6528#6536#0" expanded="true" />
                 <element signature="method#saveDataset#0;class#Main#0" />
                 <element signature="method#printGroup#0;class#Main#0" />
                 <element signature="method#selectFile#0;class#Main#0" />
+                <element signature="e#6386#6387#0" expanded="true" />
+                <element signature="e#6443#6444#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -161,6 +106,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -203,14 +150,12 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552163915498" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552608219977" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -309,11 +254,13 @@
       <workItem from="1551663486547" duration="174000" />
       <workItem from="1551999766704" duration="4949000" />
       <workItem from="1552161466500" duration="2513000" />
+      <workItem from="1552522396084" duration="66000" />
+      <workItem from="1552606383049" duration="1703000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21742000" />
+    <option name="totallyTimeSpent" value="23511000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -333,11 +280,11 @@
       <window_info id="UI Designer" order="2" />
       <window_info id="Capture Tool" order="3" />
       <window_info id="Favorites" order="4" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.1995731" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.20384204" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="1" />
       <window_info anchor="bottom" id="Version Control" order="2" weight="0.32991612" />
-      <window_info anchor="bottom" id="Terminal" order="3" weight="0.3718546" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="3" visible="true" weight="0.3718546" />
       <window_info anchor="bottom" id="Event Log" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Find" order="6" />
@@ -352,7 +299,7 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Theme Preview" order="4" />
-      <window_info active="true" anchor="right" id="Maven" order="5" visible="true" weight="0.122732125" />
+      <window_info anchor="right" id="Maven" order="5" visible="true" weight="0.122732125" />
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Database" order="8" />
@@ -494,17 +441,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/uakron/ai/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="203" column="23" selection-start-line="203" selection-start-column="23" selection-end-line="203" selection-end-column="23" />
+        <state relative-caret-position="431">
+          <caret line="73" selection-start-line="73" selection-end-line="73" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#642#643#0" expanded="true" />
             <element signature="e#668#669#0" expanded="true" />
-            <element signature="e#6475#6482#0" expanded="true" />
-            <element signature="e#6528#6536#0" expanded="true" />
             <element signature="method#saveDataset#0;class#Main#0" />
             <element signature="method#printGroup#0;class#Main#0" />
             <element signature="method#selectFile#0;class#Main#0" />
+            <element signature="e#6386#6387#0" expanded="true" />
+            <element signature="e#6443#6444#0" expanded="true" />
           </folding>
         </state>
       </provider>
