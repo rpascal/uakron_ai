@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e7c6fde8-0cfd-4a6b-b236-96a4ab112263" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../p_2732.zip" beforeDir="false" afterPath="$PROJECT_DIR$/../p_2732.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/uakron/ai/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uakron/ai/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/savedModels/,p.model" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/savedModels/2.model" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/savedModels/aaa.model" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/savedModels/sd.model" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -14,27 +18,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/uakron/ai/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="431">
-              <caret line="73" selection-start-line="73" selection-end-line="73" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#642#643#0" expanded="true" />
-                <element signature="e#668#669#0" expanded="true" />
-                <element signature="method#saveDataset#0;class#Main#0" />
-                <element signature="method#printGroup#0;class#Main#0" />
-                <element signature="method#selectFile#0;class#Main#0" />
-                <element signature="e#6386#6387#0" expanded="true" />
-                <element signature="e#6443#6444#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -107,7 +91,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -146,16 +129,26 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="ai" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="p_2732" type="b2602c69:ProjectViewProjectNode" />
+              <item name="p_2732" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="ai" type="462c0819:PsiDirectoryNode" />
+              <item name="Main.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552608219977" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552608297866" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -255,12 +248,13 @@
       <workItem from="1551999766704" duration="4949000" />
       <workItem from="1552161466500" duration="2513000" />
       <workItem from="1552522396084" duration="66000" />
-      <workItem from="1552606383049" duration="1703000" />
+      <workItem from="1552606383049" duration="1810000" />
+      <workItem from="1552750696445" duration="27000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23511000" />
+    <option name="totallyTimeSpent" value="23645000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -273,18 +267,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="-2" width="1920" height="1202" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Image Layers" order="0" />
       <window_info id="Designer" order="1" />
       <window_info id="UI Designer" order="2" />
       <window_info id="Capture Tool" order="3" />
       <window_info id="Favorites" order="4" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.20384204" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.20597652" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="1" />
       <window_info anchor="bottom" id="Version Control" order="2" weight="0.32991612" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="3" visible="true" weight="0.3718546" />
+      <window_info anchor="bottom" id="Terminal" order="3" visible="true" weight="0.3718546" />
       <window_info anchor="bottom" id="Event Log" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Find" order="6" />
