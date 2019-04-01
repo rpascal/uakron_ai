@@ -2,17 +2,12 @@ package com.uakron.ai;
 
 import weka.core.*;
 import weka.core.converters.ConverterUtils.DataSource;
-
-import weka.classifiers.Evaluation;
-import weka.classifiers.trees.J48;
 import weka.classifiers.bayes.NaiveBayes;
-
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.Console;
 import java.io.File;
 import java.util.*;
-import java.util.stream.Collectors;
 
 
 public class Main {
@@ -65,13 +60,6 @@ public class Main {
                         dataSet.setClassIndex(dataSet.numAttributes() - 1);
                         buildClassifier.buildClassifier(dataSet);
 
-                        printGroup(buildClassifier.toString(), buildClassifier.displayModelInOldFormatTipText(),
-                                buildClassifier.globalInfo(), Integer.toString(buildClassifier.getClassEstimator().getOptions().length));
-
-                        for(String s : buildClassifier.getClassEstimator().getOptions() ){
-                            printGroup(s);
-                        }
-
                         saveDataset();
 
                         printGroup("Data Loaded and Saved");
@@ -104,7 +92,38 @@ public class Main {
                         if (!dataLoaded) {
                             break;
                         }
-//                        traverseDecisionTree(buildClassifier.graph().split("\n"));
+
+                        float yes = 0;
+                        float no = 0;
+
+                        List<String> predictionValues = new ArrayList<>( Arrays.asList( buildClassifier.toString().split("\n")));
+
+                        HashMap<String, String> map = getNewAttributes();
+
+                        Iterator it = map.entrySet().iterator();
+                        while (it.hasNext()) {
+                            Map.Entry pair = (Map.Entry)it.next();
+                            String value = pair.getValue().toString();
+
+                            Optional<String> v = predictionValues.stream().filter(x -> x.contains(value)).findFirst();
+
+                            if(v.isPresent()){
+                                String[] s = v.get().replaceAll("(^\\s+|\\s+$)", "").split("\\s+");
+                                float newYes = Float.parseFloat(s[1]);
+                                float newNo = Float.parseFloat(s[2]);
+                                yes += newYes;
+                                no += newNo;
+                            }
+                            it.remove();
+                        }
+
+                        if(yes > no){
+                            printGroup("Prediction is YES");
+                        }else if(no > yes){
+                            printGroup("Prediction is NO");
+                        }else{
+                            printGroup("Prediction is UNDETERMINED");
+                        }
 
                         break;
                     }
@@ -118,26 +137,6 @@ public class Main {
                 }
             } catch (Exception e) {
                 printGroup(e.toString(), "Error loading data");
-            }
-        }
-    }
-
-    private void traverseDecisionTree(String nodes[]) {
-        for (int j = 1; j < nodes.length - 1; j++) {
-            if (nodes[j].indexOf("shape=box") != -1) {
-                printGroup("The decision Attribute is : " + nodes[j].substring(nodes[j].indexOf("=") + 2, nodes[j].indexOf(" (")));
-                break;
-            }
-            String mes = "Enter the value for " + nodes[j].substring(nodes[j].indexOf("=") + 2, nodes[j].indexOf("]") - 2) + ": ";
-            String condition_value = readFromConsole(mes);
-            j++;
-            while ((nodes[j].indexOf("= " + condition_value) == -1) && j < nodes.length - 1) {
-                j++;
-            }
-            String childNodeValue = nodes[j].substring(0, nodes[j].indexOf(" "));
-            childNodeValue = childNodeValue.substring(childNodeValue.indexOf("->") + 2);
-            while ((!childNodeValue.equals(nodes[j + 1].substring(0, nodes[j + 1].indexOf(" ")))) && j + 1 < nodes.length - 1) {
-                j++;
             }
         }
     }
@@ -185,6 +184,36 @@ public class Main {
         }
         return null;
     }
+
+    private HashMap<String, String> getNewAttributes() {
+
+        HashMap<String, String> map = new HashMap<>();
+
+        Instances newCases = new Instances(dataSet);
+        newCases.delete();
+
+
+        Instance newInstance = new DenseInstance(newCases.numAttributes());
+        printGroup("Enter values...");
+
+        for (int i = 0; i < newCases.numAttributes() - 1; ++i) {
+            Attribute attribute = newCases.attribute(i);
+            boolean set = false;
+            while (!set) {
+                try {
+                    String value = readFromConsole(attribute.name() + ": ");
+                    newInstance.setValue(attribute, value);
+                    map.put(attribute.name(), value);
+                    set = true;
+                } catch (IllegalArgumentException e) {
+                    printGroup(e.toString(), "Error, Try entering a different value");
+                }
+            }
+        }
+        return map;
+    }
+
+
 
 
     private String readFromConsole(String s) {
